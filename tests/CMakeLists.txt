@@ -35,16 +35,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
-set(QLIBC_NESTED_SOURCES)
-foreach(SRC ${QLIBC_SOURCES})
-    list(APPEND QLIBC_NESTED_SOURCES ../${SRC})
-endforeach()
-add_executable(quandelibcTests main_tests.cpp ${QLIBC_NESTED_SOURCES}
+add_executable(quandelibcTests main_tests.cpp
         test_fockstate.cpp
         test_fs_array.cpp
         test_permanents.cpp)
 
-target_link_libraries(quandelibcTests PRIVATE Catch2::Catch2)
+target_link_libraries(quandelibcTests PRIVATE Catch2::Catch2 quandelibc-lib)
+target_compile_definitions(quandelibcTests PRIVATE CATCH_CONFIG_ENABLE_BENCHMARKING)
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/contrib)
 include(CTest)

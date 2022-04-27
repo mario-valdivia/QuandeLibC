@@ -76,7 +76,15 @@ SCENARIO("C++ Testing Permanents") {
             THEN("build Succeed !") {
                 auto res = permanent_glynn(matrix.data(), 5);
                 REQUIRE(isApproximatelyEqual(res, std::complex<double>(-1.760853120000001, 1.8998678400000022)));
+                
             }
-        }
+        }        
     }
+}
+
+TEST_CASE("Benchmarking Permanent") {
+    auto matrix = genSquaredMatrixComplex(20);
+    BENCHMARK("Permanent_glynn of complex matrix of size 20") {
+        return permanent_glynn(matrix.data(), 20);
+    };
 }
