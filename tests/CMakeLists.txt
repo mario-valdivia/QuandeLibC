@@ -42,6 +42,9 @@ add_executable(quandelibcTests main_tests.cpp
 
 target_link_libraries(quandelibcTests PRIVATE Catch2::Catch2 quandelibc-lib)
 target_compile_definitions(quandelibcTests PRIVATE CATCH_CONFIG_ENABLE_BENCHMARKING)
+if (BUILD_BENCHMARK)
+    target_compile_definitions(quandelibcTests PRIVATE BUILD_BENCHMARK)
+endif()
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/contrib)
 include(CTest)

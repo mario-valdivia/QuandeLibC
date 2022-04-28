@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTING "Build unit tests" OFF)
+option(BUILD_BENCHMARK "Build benchmark in tests" OFF)
 option(BUILD_PYTHON_WRAPPER "Build Python Wrapper" ON)
 
 if (MSVC)

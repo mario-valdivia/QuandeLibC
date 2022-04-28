@@ -82,9 +82,16 @@ SCENARIO("C++ Testing Permanents") {
     }
 }
 
-TEST_CASE("Benchmarking Permanent") {
-    auto matrix = genSquaredMatrixComplex(20);
-    BENCHMARK("Permanent_glynn of complex matrix of size 20") {
+#ifdef BUILD_BENCHMARK
+TEST_CASE("Benchmarking Permanent Computation") {
+    static const auto matrix = genSquaredMatrixComplex(20);
+    BENCHMARK("Permanent_glynn matrix<complex<double>>(20)") {
+        return permanent_glynn(matrix.data(), 20);
+    };
+
+    static const auto matrixD = genSquaredMatrixDouble(20);
+    BENCHMARK("Permanent_glynn matrix<double>(20)") {
         return permanent_glynn(matrix.data(), 20);
     };
 }
+#endif
